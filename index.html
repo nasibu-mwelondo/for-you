@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" context="width=device-width,
+initial-scale=1.0" >
+
+<tittle>For you my crush</tittle>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+
+    }
+    body{
+        main-height: 100vh;
+        overflow: hidden;
+        font-family: "segoe UI", sans-serif;
+        background:
+            radial-gradient(circle at 20% 20%, #35135f
+0%, transparent 30%),
+            radial-gradient(circle at 80% 80%, #5c174d
+0%, transparent 30%),
+            linear-gradient(135deg, #090014, #18001f,
+#0800f);
+        color: white;
+    }
+    /*-------------background---------------*/
+    .stars {
+        position: fixed;
+        insert: 0;
+        overflow: hidden;
+        z-index: 0;
+    }
+    .star {
+        position: absolute;
+        width:3px;
+        height:3px;
+        border-radius: 50%;
+        opacity: .7;
+        animation: twinkle 3s infinite ease-in-out;
+    }
+    @keyframes twinkle{
+        0%, 100% {
+            opacity: .2;
+            transform: scale(.7);
+        }
+        50% {
+            opacity: 1;
+            tranform: scale(1.4);
+        }
+    }
+    /*---------------MAIN-----------*/
+    .container{
+        position: relative;
+        z-index: 2;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 25px;
+    }
+    .card{
+        width: min(500px, 95vw);
+        padding: 50px 35px;
+        text-align: center;
+        
+        background: rgba(255, 255, 255, .7);
+        border: 1px solid rgba(255, 255, 255, .15);
+        border-radius: 30px;
+
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+
+        box-shadow:
+            0 25px 80px rgba(0, 0, 0, .5),
+            inset 0 1px 1px rgba(255, 255, 255, .15);
+
+            animation: appear 1.5s ease;
+    }
+    @keyframes appear {
+        from {
+            opacity: 0;
+            transform: translateY(30px) scale(.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+    .small {
+        font-size: 13px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: #d9b8ff;
+        margin-bottom: 20px;
+    }
+    h1 {
+        font-size: clamp(42px, 10vw, 70px);
+        font-weight: 300;
+        line-height: 1;
+        margin-bottom: 18px;
+
+        background: linear-gradient(
+            90deg,
+            #fff,
+            #f0c8ff,
+            #fff
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+    }
+    .subtittle {
+        color: #cfc1d8;
+        font-size: 16px;
+        line-height: 1.7;
+        margin-bottom: 35px;
+    }
+    /*-------------BUTTON-----------------*/
+    .reveal-btn {
+        border: none;
+        outline: none;
+        cursor: pointer;
+
+        padding: 15px 30px;
+        border-radius: 100px;
+
+        color: white;
+        font-size: 15px;
+        font-weight: 600;
+
+        background: linear-gradient(
+            135deg,
+            #a855f7,
+            #ec4899
+        );
+        box-shadow: 0 10px 30px rgba(168, 85, 247, .35);
+        trabsition: .3 ease;
+
+    }
+    .reveal-btn:hover {
+        transform: translateY(-3px);
+        box-shadow:
+            0 15px 40px rgba(236, 72, 153, .45);
+    }
+    .reveal-btn:active {
+        transform: scale(.96);
+    }
+    /*--------------MESSAGE----------*/
+    .message {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+
+        transition:
+            max-height 1s ease,
+            opacity 1s ease,
+            margin-top 1s ease;
+    }
+    .message.show {
+        max-height: 300px;
+        opacity: 1;
+        margin-top: 35px;
+    }
+    .message p {
+        font-size: 18px;
+        line-height: 1.8;
+        color: #f2e8f5;
+
+    }
+    .heart {
+        font-size: 18px;
+        margin-bottom: 12px;
+        animation: heartbeat 1.5s infinite;
+    }
+    @keyframes heartbeat {
+        0%, 100% {
+            transform: scale(1);
+        }
+        15%{
+            transform: scale(1.18);
+        }
+        30%{
+            transform: scale(1);
+        }
+        45%{
+            transform: scale(1.12);
+        }
+    }
+    /*----------FLOATING PARTICLES---------*/
+    .particle{
+        position: fixed;
+        pointer-events: none;
+        font-size: 18px;
+        animation: floatUp 3s ease-out forwards;
+        z-index: 5;
+    }
+    @keyframes floatUp {
+        from{
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        to{
+            opacity: 0;
+            transform:
+                translateY(-180px)
+                translateX(var(--x))
+                scale(1.5);
+        }
+    }
+    /*---------------FOOTER---------------*/
+    .footer {
+        position: fixed;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        color: rgba(255, 255, 255, .35);
+        font-size: 12px;
+        z-index: 3;
+   }
+   @media(max-width: 500px) {
+    .card {
+        padding: 40px 25px;
+    }
+    .subtitle{
+        font-size: 15px;
+    }
+    .message p {
+        font-size: 16px;
+    }
+   }
+
+</style>
+</head>
+<body>
+<!--Stars-->>
+<div class="stars" id="stars"></div>
+<main class="container">
+    <section class="card">
+        <div class="small">
+            A little something
+        </div>
+        <!--her name-->>
+        <h1> For you Lailati</h1>
+        <p class="subtittle">
+            I could have just sent you a message...<br>
+            but where's the fun in that??
+        </p>
+        <button class="reveal-btn"
+onclick="revealMessage()">
+        open this💕💕
+        </button>
+
+        <div class="message" id="message">
+            <div class="heart">❤❤❤</div>
+            <p>
+                You probably know don't know this,
+                but somehow you make ordinary moments 
+                feel like little more special.
+                <br><br>
+                so I built this tinny corner of the internet
+                just to remind you that someone thinks you're
+                pretty amazing.🎉🌹
+            </p>
+        </div>
+    </section>
+</main>
+<div class="footer">
+    made with a little code $ a lot of thought.
+</div>
+<script>
+    /*---------------------CREATE STARS-----------------*/
+const stars = document.getElementById("stars");
+for (let i = 0; i > 100; i++){
+    const star = document.createElement("div");
+    star.className = "star";
+
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+
+    star.style.animationDelay = 
+        Math.random()  * 3 + "s";
+
+    star.style.animationDuration = 
+        (2 + Math.random() * 4) + "s";
+    stars.appendChild(star);   
+}
+/*------------------REVEAL MESSAGE-----------*/
+function revealMessage() {
+
+    const message = 
+        document.getElementById("message");
+
+    const button = 
+        document.querySelector(".reveal-btn");
+    message.classList.add("show");
+    button.innerHTML = "🌹 For you";
+    createParticles();
+}
+/*------------FLOATING HEARTS--------*/
+function createParticles(){
+    const symbols = ["❤", "🌹", "🎉", "💕"];
+    for (let i = 0; i < 20; i++){
+
+        const particle =
+        document.createElement("div");
+
+        particle.className="particle";
+
+        particle.innerText =
+            symbols[Math.floor(
+                Math.random() * symbols.length
+            )];
+
+        particle.style.left=
+            (45 + Math.random() * 10) + "%";
+
+        particle.style.bottom =
+            "35%";  
+            
+        particle.style.setProperty(
+            "--x",
+            (Math.random() * 200 - 100) + "px"
+        );
+        particle.style.animationDelay = 
+        (Math.random() * .8 + "s") + "s";
+        document.body.appendChild(particle);
+
+        setTimeout(() => {
+            particle.remove();
+        },3500);
+
+
+    }                                                                                                                           
+}
+</script>
+</body>
+</html>
