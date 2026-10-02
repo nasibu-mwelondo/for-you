@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" context="width=device-width,
+<meta name="viewport" content="width=device-width,
 initial-scale=1.0" >
 
-<tittle>For you my crush</tittle>
+<title>For you my crush</title>
 <style>
     *{
         margin: 0;
@@ -14,7 +14,7 @@ initial-scale=1.0" >
 
     }
     body{
-        main-height: 100vh;
+        min-height: 100vh;
         overflow: hidden;
         font-family: "segoe UI", sans-serif;
         background:
@@ -29,7 +29,7 @@ initial-scale=1.0" >
     /*-------------background---------------*/
     .stars {
         position: fixed;
-        insert: 0;
+        inset: 0;
         overflow: hidden;
         z-index: 0;
     }
@@ -48,7 +48,7 @@ initial-scale=1.0" >
         }
         50% {
             opacity: 1;
-            tranform: scale(1.4);
+            transform: scale(1.4);
         }
     }
     /*---------------MAIN-----------*/
@@ -66,7 +66,7 @@ initial-scale=1.0" >
         padding: 50px 35px;
         text-align: center;
         
-        background: rgba(255, 255, 255, .7);
+        background: rgba(255, 255, 255, .90);
         border: 1px solid rgba(255, 255, 255, .15);
         border-radius: 30px;
 
@@ -98,22 +98,22 @@ initial-scale=1.0" >
     }
     h1 {
         font-size: clamp(42px, 10vw, 70px);
-        font-weight: 300;
+        font-weight: 700;
         line-height: 1;
         margin-bottom: 18px;
 
         background: linear-gradient(
             90deg,
-            #fff,
-            #f0c8ff,
-            #fff
+            #ffffff,
+            #f7d9ff,
+            #ffffff
         );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.25)
     }
     .subtittle {
-        color: #cfc1d8;
+        color: #48106b;
         font-size: 16px;
         line-height: 1.7;
         margin-bottom: 35px;
@@ -137,7 +137,7 @@ initial-scale=1.0" >
             #ec4899
         );
         box-shadow: 0 10px 30px rgba(168, 85, 247, .35);
-        trabsition: .3 ease;
+        transition: .3 ease;
 
     }
     .reveal-btn:hover {
@@ -167,7 +167,7 @@ initial-scale=1.0" >
     .message p {
         font-size: 18px;
         line-height: 1.8;
-        color: #f2e8f5;
+        color: #2d0d36;
 
     }
     .heart {
@@ -222,9 +222,28 @@ initial-scale=1.0" >
         z-index: 3;
    }
    @media(max-width: 500px) {
-    .card {
-        padding: 40px 25px;
+    .container{
+        padding: 10px;
     }
+    .card {
+        width: 100%;
+        min-height: 92vh;
+        padding: 50px 22px;
+        border-radius: 25px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .small{
+      font-size: 12px;
+        letter-spacing: 3px;
+    }
+
+    h1 {
+        font-size: clamp(40px, 13vw, 58px);
+    }  
+    
     .subtitle{
         font-size: 15px;
     }
@@ -274,7 +293,7 @@ onclick="revealMessage()">
 <script>
     /*---------------------CREATE STARS-----------------*/
 const stars = document.getElementById("stars");
-for (let i = 0; i > 100; i++){
+for (let i = 0; i < 100; i++){
     const star = document.createElement("div");
     star.className = "star";
 
