@@ -18,14 +18,11 @@ initial-scale=1.0" >
         overflow: hidden;
         font-family: "segoe UI", sans-serif;
         background:
-            radial-gradient(circle at 20% 20%, #35135f
-0%, transparent 30%),
-            radial-gradient(circle at 80% 80%, #5c174d
-0%, transparent 30%),
-            linear-gradient(135deg, #090014, #18001f,
-#0800f);
-        color: white;
-    }
+             radial-gradient(circle at 15% 20%, rgba(255, 105, 180, 0.55), transparent 35%),
+            radial-gradient(circle at 85% 25%, rgba(255, 20, 147, 0.45), transparent 35%),
+            radial-gradient(circle at 50% 90%, rgba(255, 182, 193, 0.35), transparent 40%),
+            linear-gradient(135deg, #16000d, #3a001f, #12000d);
+    }   
     /*-------------background---------------*/
     .stars {
         position: fixed;
@@ -62,23 +59,24 @@ initial-scale=1.0" >
         padding: 25px;
     }
     .card{
-        width: min(500px, 95vw);
-        padding: 50px 35px;
-        text-align: center;
-        
-        background: rgba(255, 105, 180, 0.28);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 30px;
+    width: min(500px, 95vw);
+    padding: 50px 35px;
+    text-align: center;
 
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
+    background: rgba(255, 150, 200, 0.12);
 
-        box-shadow:
-            0 25px 80px rgba(0, 0, 0, .5),
-            inset 0 1px 1px rgba(255, 255, 255, .15);
+    border: 1px solid rgba(255, 255, 255, 0.28);
 
-            animation: appear 1.5s ease;
-    }
+    border-radius: 30px;
+
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    box-shadow:
+        0 25px 80px rgba(255, 20, 147, 0.25),
+        inset 0 1px 2px rgba(255, 255, 255, 0.35);
+
+    animation: appear 1.5s ease;
     @keyframes appear {
         from {
             opacity: 0;
