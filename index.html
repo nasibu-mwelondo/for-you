@@ -36,6 +36,8 @@ initial-scale=1.0" >
         height:3px;
         border-radius: 50%;
         opacity: .7;
+        background: #ffd6ec;
+        box-shadow: 0 0 8px rgba(255,182,193,.9);
         animation: twinkle 3s infinite ease-in-out;
     }
     @keyframes twinkle{
@@ -59,24 +61,35 @@ initial-scale=1.0" >
         padding: 25px;
     }
     .card{
-    width: min(500px, 95vw);
-    padding: 50px 35px;
-    text-align: center;
+        width: min(500px, 95vw);
+        padding: 50px 35px;
+        text-align: center;
+        background: rgba(255, 105, 180, 0.11);
+        border: 1px solid rgba(255, 255, 255, 0.32);
+        border-radius: 30px;
+        backdrop-filter: blur(28px);
+        -webkit-backdrop-filter: blur(28px);
+        box-shadow:
+            0 25px 80px rgba(255, 20, 147, 0.35),
+            inset 0 1px 2px rgba(255, 255, 255, 0.45);
+        position: relative;
+        overflow: hidden;
+        animation: appear 1.5s ease;
+    }
 
-    background: rgba(255, 150, 200, 0.12);
+    .card::before{
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            135deg,
+            rgba(255,255,255,.18),
+            transparent 35%,
+            rgba(255,105,180,.08)
+        );
+        pointer-events: none;
+    }
 
-    border: 1px solid rgba(255, 255, 255, 0.28);
-
-    border-radius: 30px;
-
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-
-    box-shadow:
-        0 25px 80px rgba(255, 20, 147, 0.25),
-        inset 0 1px 2px rgba(255, 255, 255, 0.35);
-
-    animation: appear 1.5s ease;
     @keyframes appear {
         from {
             opacity: 0;
@@ -133,7 +146,7 @@ initial-scale=1.0" >
         text-shadow: 0 0 10px rgba(255, 255, 255, 0.25)
     }
     .subtittle {
-        color: #48106b;
+        color: #fff1fa;
         font-size: 16px;
         line-height: 1.7;
         margin-bottom: 35px;
@@ -153,10 +166,12 @@ initial-scale=1.0" >
 
         background: linear-gradient(
             135deg,
-            #a855f7,
-            #ec4899
+            #ff69b4,
+            #ff1493
         );
-        box-shadow: 0 10px 30px rgba(168, 85, 247, .35);
+        box-shadow:
+            0 10px 30px rgba(255, 20, 147, .35),
+            inset 0 1px 1px rgba(255,255,255,.45);
         transition: .3 ease;
 
     }
@@ -180,14 +195,14 @@ initial-scale=1.0" >
             margin-top 1s ease;
     }
     .message.show {
-        max-height: 300px;
+        max-height: 700px;
         opacity: 1;
         margin-top: 35px;
     }
     .message p {
         font-size: 18px;
         line-height: 1.8;
-        color: #2d0d36;
+        color: #fff5fb;
 
     }
     .heart {
@@ -213,8 +228,8 @@ initial-scale=1.0" >
     .particle {
         position: fixed;
         pointer-events: none;
-        font-size: 50px;
-        animation: floatUp 5s ease-out forwards;
+        font-size: 38px;
+        animation: floatUp 4.5s ease-out forwards;
         z-index: 5;
     }
     @keyframes floatUp {
@@ -230,6 +245,52 @@ initial-scale=1.0" >
                 scale(2);
         }
     }
+    .photo-wrap{
+        width: 180px;
+        height: 180px;
+        margin: 0 auto 18px;
+        padding: 5px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #fff, #ff69b4, #ff1493);
+        box-shadow:
+            0 0 20px rgba(255,105,180,.65),
+            0 0 55px rgba(255,20,147,.35);
+        animation: photoPop .8s ease both;
+    }
+
+    .crush-photo{
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 50%;
+        border: 3px solid rgba(255,255,255,.85);
+    }
+
+    .flowers{
+        font-size: 28px;
+        letter-spacing: 5px;
+        margin: 8px 0 18px;
+        animation: flowerDance 2s ease-in-out infinite;
+    }
+
+    @keyframes photoPop{
+        from{
+            opacity: 0;
+            transform: scale(.45) rotate(-8deg);
+        }
+        to{
+            opacity: 1;
+            transform: scale(1) rotate(0);
+        }
+    }
+
+    @keyframes flowerDance{
+        0%,100%{ transform: translateY(0) rotate(0); }
+        50%{ transform: translateY(-6px) rotate(2deg); }
+    }
+
     /*---------------FOOTER---------------*/
     .footer {
         position: fixed;
@@ -264,7 +325,7 @@ initial-scale=1.0" >
         font-size: clamp(40px, 13vw, 58px);
     }  
     
-    .subtitle{
+    .subtittle{
         font-size: 15px;
     }
     .message p {
@@ -275,7 +336,7 @@ initial-scale=1.0" >
 </style>
 </head>
 <body>
-<!--Stars-->>
+<!-- Stars -->
 <div class="stars" id="stars"></div>
 <main class="container">
     <section class="card">
@@ -286,7 +347,7 @@ initial-scale=1.0" >
         <div class="small">
             A little something
         </div>
-        <!--her name-->>
+        <!-- Her name -->
         <h1> For you My Crush</h1>
         <p class="subtittle">
             I could have just sent you a message...<br>
@@ -298,7 +359,14 @@ onclick="revealMessage()">
         </button>
 
         <div class="message" id="message">
-            <div class="heart">❤❤❤</div>
+            <div class="heart">💗 💕 💗</div>
+
+            <div class="photo-wrap">
+                <img src="her-photo.jpg" alt="A special photo" class="crush-photo">
+            </div>
+
+            <div class="flowers">🌸 🌷 🌸 🌷 🌸</div>
+
             <p>
                 You probably don't know this,
                 but somehow you make ordinary moments 
@@ -334,14 +402,20 @@ for (let i = 0; i < 100; i++){
 /*------------------REVEAL MESSAGE-----------*/
 function revealMessage() {
 
-    const message = 
+    const message =
         document.getElementById("message");
 
-    const button = 
+    const button =
         document.querySelector(".reveal-btn");
+
     message.classList.add("show");
-    button.innerHTML = "🌹 For you";
+    button.innerHTML = "🌹 For you ❤️";
+
+    // Flowers + hearts every time the button is pressed
     createParticles();
+
+    // A second wave gives the same "magical reveal" feeling
+    setTimeout(createParticles, 450);
 }
 /*--------CHANGE LANGUAGE-----------*/
 function changeLanguage(lang) {
@@ -399,7 +473,7 @@ function changeLanguage(lang) {
 }
 /*------------FLOATING HEARTS--------*/
 function createParticles(){
-    const symbols = ["💕", "💕", "💕", "💕"];
+    const symbols = ["💕", "💗", "💖", "🌸", "🌷", "💞", "✨"];
     for (let i = 0; i < 20; i++){
 
         const particle =
@@ -416,7 +490,7 @@ function createParticles(){
             (45 + Math.random() * 10) + "%";
 
         particle.style.bottom =
-            "35%";  
+            "30%";  
             
         particle.style.setProperty(
             "--x",
